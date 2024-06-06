@@ -1,0 +1,5 @@
+Pipfile/
+Pipfile.lock/
+*sqlite3/
+__pycache__/
+-idea/
