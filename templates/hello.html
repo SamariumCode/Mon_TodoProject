@@ -10,11 +10,13 @@
 <body>
 
 
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-</ul>
+{% for obj in all %}
+    <p>{{ obj.title }}</p>
+    <p>{{ obj.description }}</p>
+    <p>{{ obj.created }}</p>
+    <br>
+{% endfor %}
+
 
 </body>
 </html>
