@@ -6,4 +6,5 @@ def say_hello(request):
 
 
 def index(request):
-    return render(request, 'home.html')
+    full_name = {'name': 'Admin', 'family': 'Django', 'first': [1, 2, 3, 4], 'second': [5, 6, 7, 8]}
+    return render(request, 'home.html', context={'full_name': full_name})
