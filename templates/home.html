@@ -14,15 +14,14 @@ Todo
 {% block content %}
 
 
-    
 
 
 
-    {% for todo in todos %}
-    <p>{{ todo.title }}</p>
-    <p>{{ todo.description }}</p>
-    <p>{{ todo.created }}</p>
-    <br />
-    {% endfor %}
+
+{% for todo in todos %}
+
+<a href="{% url 'detail' todo.pk %}">{{todo.title}}</a><br>
+
+{% endfor %}
 
 {% endblock content %}
