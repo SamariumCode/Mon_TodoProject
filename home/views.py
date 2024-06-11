@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Todo
 
 
@@ -14,4 +15,5 @@ def detail(request, pk):
 
 def delete(request, pk):
     Todo.objects.get(pk=pk).delete()
+    messages.success(request, 'با موفقیت پست حذف شد', extra_tags='success')
     return redirect('index')
