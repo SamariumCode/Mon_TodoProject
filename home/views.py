@@ -21,5 +21,18 @@ def delete(request, pk):
 
 
 def create(request):
-    form = TodoCreateForm()
+
+    if request.method == 'POST':
+        form = TodoCreateForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            Todo.objects.create(
+                title=cd['title'],
+                description=cd['description'],
+            )
+            messages.success(request, 'با موفقیت ساخته شد', 'success')
+            return redirect('index')
+    else:
+
+        form = TodoCreateForm()
     return render(request, 'create.html', context={'form': form})
