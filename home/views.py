@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Todo
-from .forms import TodoCreateForm
+from .forms import TodoCreateForm, TodoUpdateForm
 
 
 def index(request):
@@ -36,3 +36,18 @@ def create(request):
 
         form = TodoCreateForm()
     return render(request, 'create.html', context={'form': form})
+
+
+def update(request, pk):
+
+    todo = Todo.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = TodoUpdateForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'با موفقیت بروزرسانی شد', 'success')
+            return redirect('detail', pk)
+    else:
+        form = TodoUpdateForm(instance=todo)
+    return render(request, 'update.html', context={'form': form})
