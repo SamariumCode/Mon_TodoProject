@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from . forms import UserRegistrationForm, UserLoginForm
 
@@ -47,3 +47,10 @@ def user_login(request):
         form = UserLoginForm()
 
     return render(request, 'login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    messages.success(
+        request, 'کاربر گرامی شما با موفقیت خارج شدید', extra_tags='success')
+    return redirect('index')
