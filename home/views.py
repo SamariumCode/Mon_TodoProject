@@ -1,9 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Todo
-
-
-def say_hello(request):
-    return render(request, 'hello.html')
 
 
 def index(request):
@@ -14,3 +10,8 @@ def index(request):
 def detail(request, pk):
     todo = Todo.objects.get(pk=pk)
     return render(request, 'detail.html', context={'todo': todo})
+
+
+def delete(request, pk):
+    Todo.objects.get(pk=pk).delete()
+    return redirect('index')

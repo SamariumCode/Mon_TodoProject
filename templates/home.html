@@ -18,10 +18,15 @@ Todo
 
 
 
-{% for todo in todos %}
+<div class="card">
 
-<a href="{% url 'detail' todo.pk %}">{{todo.title}}</a><br>
 
-{% endfor %}
+    {% for todo in todos %}
+
+    <a class="card-body" href="{% url 'detail' todo.pk %}">{{todo.title}}</a><br>
+
+    {% endfor %}
+
+</div>
 
 {% endblock content %}
